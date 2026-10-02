@@ -1,0 +1,24 @@
+Retrieval-Augmented Generation (RAG) is a technique that combines information
+retrieval with text generation. Instead of relying only on what a language
+model memorized during training, RAG first retrieves relevant passages from
+an external knowledge source (such as a document or database), and then
+feeds those passages to the language model along with the user's question.
+
+This approach has two major benefits. First, it reduces hallucination,
+because the model's answer is grounded in real, retrieved text rather than
+purely generated from memory. Second, it allows the system to answer
+questions about documents the model has never seen before, without needing
+to retrain the model itself.
+
+A typical RAG pipeline has four stages: loading the source documents,
+splitting them into smaller chunks, embedding those chunks into vectors
+using an embedding model, and storing the vectors in a vector database such
+as FAISS, Pinecone, or ChromaDB. At query time, the user's question is
+embedded using the same model, and the vector database returns the most
+similar chunks. These chunks, along with the original question, are passed
+to a large language model (LLM), which generates a final answer.
+
+LangChain is a popular open-source framework that makes it easier to build
+RAG pipelines by providing ready-made components for document loading, text
+splitting, embeddings, vector stores, and chaining these steps together with
+an LLM.
